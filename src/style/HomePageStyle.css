@@ -1,0 +1,118 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../assets/high-angle-photo-camera-indoors-still-life.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: white;
+  z-index: 5;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+/* start of category section */
+
+.category {
+  background-image: url("../assets/image2.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  position: relative;
+  z-index: 5;
+}
+.category::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+.category-inner img {
+  object-fit: cover;
+}
+
+.card-icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: var(--main-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s background-color;
+}
+
+.category-icon {
+  color: var(--main-color);
+  transition: 0.5s color;
+}
+
+/* end of category section */
+
+/* start of homePage section */
+
+.homePage-img img {
+  transition: transform 0.5s;
+}
+
+.homePage-card:hover .homePage-img img {
+  transform: scale(1.2);
+}
+
+.homePage-inner {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.homePage-prices p:first-child {
+  font-weight: bold;
+}
+
+.homePage-prices p:last-child {
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.homePage-info {
+  font-weight: 600;
+}
+
+.item-number {
+  color: var(--main-color);
+}
+
+.btn-homePage {
+  --bs-btn-color: var(--main-color);
+  --bs-btn-border-color: var(--main-color);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--main-color);
+  --bs-btn-hover-border-color: var(--main-color);
+  --bs-btn-focus-shadow-rgb: 13, 110, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--main-color);
+  --bs-btn-active-border-color: var(--main-color);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: var(--main-color);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: var(--main-color);
+  --bs-gradient: none;
+  --bs-btn-border-color: var(--main-color) !important;
+}
+
+/* end of homePage section */
