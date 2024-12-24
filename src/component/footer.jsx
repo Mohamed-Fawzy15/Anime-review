@@ -1,4 +1,4 @@
-import logo from "../assets/cameraStorelogo.png";
+import logo from "../assets/logo.png";
 import "../style/footerStyle.css";
 
 const Footer = () => {
@@ -15,7 +15,7 @@ const Footer = () => {
                     alt="Camera shop logo"
                     className="footer-img"
                   />
-                  <h3 className="mb-0">Camera Shop Logo</h3>
+                  <h3 className="mb-0">Anime Review</h3>
                 </header>
 
                 <p className="my-3">

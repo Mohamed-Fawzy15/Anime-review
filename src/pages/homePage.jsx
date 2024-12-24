@@ -1,12 +1,5 @@
 import "../style/HomePageStyle.css";
 
-import image1 from "../assets/product.jpeg";
-import image2 from "../assets/image3.jpg";
-import image3 from "../assets/audio.jpg";
-import image4 from "../assets/bags.jpg";
-import image5 from "../assets/memory.jpg";
-import image6 from "../assets/access.jpg";
-
 import NavBar from "../component/navbar";
 import Footer from "../component/footer";
 
@@ -21,7 +14,7 @@ const HomePage = () => {
 
   async function getData() {
     try {
-      const res = await fetch("https://kitsu.io/api/edge/anime");
+      const res = await fetch(`https://kitsu.io/api/edge/anime`);
       if (res.ok) {
         const data = await res.json();
         setAnimeList(data.data);
@@ -31,14 +24,19 @@ const HomePage = () => {
     }
   }
 
-  console.log(animeList);
+  function truncateDescription(description, wordLimit) {
+    const words = description.split(" ");
+    return words.length > wordLimit
+      ? words.slice(0, wordLimit).join(" ") + "..."
+      : description;
+  }
 
   return (
     <>
       <NavBar />
       <header className="hero">
         <h2 className="h5">Welcome To</h2>
-        <h1>Camera Shop</h1>
+        <h1>Anime review</h1>
         <p className="text-center px-5">
           A very warm welcome to you! It s lovely to have you among us.
         </p>
@@ -47,10 +45,10 @@ const HomePage = () => {
       <section className="homePage section-space">
         <div className="container">
           <header className="d-flex justify-content-center pb-5">
-            <h2 className="section-header text-capitalize">best seller</h2>
+            <h2 className="section-header text-capitalize">best anime</h2>
           </header>
           <div className="row gy-3">
-            {animeList.map((anime) => (
+            {animeList.slice(0, 4).map((anime) => (
               <div
                 key={anime.id}
                 className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 "
@@ -64,19 +62,29 @@ const HomePage = () => {
                 </div>
                 <div className="homePage-inner rounded shadow p-3">
                   <div>
-                    <h3>Canon EOS R5</h3>
-                    <div className="homePage-prices d-flex gap-3">
-                      <p className="text-decoration-line-through mb-0">
-                        30000 EGP
-                      </p>
-                      <p className="mb-0">25000 EGP</p>
-                    </div>
+                    <h3 className="text-capitalize h5">
+                      {anime.attributes.titles.en}
+                    </h3>
                     <p className="homePage-info my-2">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Minus nesciunt sequi eius qui repellat sapiente molestias
-                      ipsa reprehenderit accusamus asperiores.
+                      {truncateDescription(anime.attributes.description, 20)}
                     </p>
-                    <p className="item-number">1 item left</p>
+                    <div className="d-flex align-items-center justify-content-between my-2">
+                      <div>
+                        <p className="mb-0 text-center fw-bold">Start In</p>
+                        <span>{anime.attributes.startDate}</span>
+                      </div>
+                      <div>
+                        <p className="mb-0 text-center fw-bold">End In</p>
+                        <span>{anime.attributes.endDate}</span>
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex align-items-center gap-2">
+                        <p className="mb-0">Rating</p>
+                        <i className="fa-solid fa-star text-warning"></i>
+                      </div>
+                      <h4>{anime.attributes.averageRating}</h4>
+                    </div>
                     <button className="btn btn-homePage w-100">
                       View Details
                     </button>
@@ -94,52 +102,36 @@ const HomePage = () => {
             <h2 className="section-header text-white py-3">Categories</h2>
           </header>
           <div className="row gy-3">
-            <div className="category-card col-12 col-md-4 col-lg-2">
+            <div className="category-card col-12 col-md-6 col-lg-3">
               <div className="category-inner d-flex justify-content-center align-items-center flex-column">
                 <div className="card-icon overflow-hidden">
-                  <img src={image1} alt="" className="w-100" />
+                  <i className="fa-solid fa-arrow-up fs-1"></i>
                 </div>
-                <p className="fs-3">Cameras</p>
+                <p className="fs-3">Top Anime</p>
               </div>
             </div>
-            <div className="category-card col-12 col-md-4 col-lg-2">
+            <div className="category-card col-12 col-md-6 col-lg-3">
               <div className="category-inner d-flex justify-content-center align-items-center flex-column">
                 <div className="card-icon overflow-hidden">
-                  <img src={image2} alt="" className="w-100" />
+                  <i className="fa-solid fa-cubes fs-1"></i>
                 </div>
-                <p className="fs-3">Lenses</p>
+                <p className="fs-3">Most Anime</p>
               </div>
             </div>
-            <div className="category-card col-12 col-md-4 col-lg-2">
+            <div className="category-card col-12 col-md-6 col-lg-3">
               <div className="category-inner d-flex justify-content-center align-items-center flex-column">
                 <div className="card-icon overflow-hidden">
-                  <img src={image3} alt="" className="w-100" />
+                  <i className="fa-solid fa-users fs-1"></i>
                 </div>
-                <p className="fs-3">Audio</p>
+                <p className="fs-3">Charcater</p>
               </div>
             </div>
-            <div className="category-card col-12 col-md-4 col-lg-2">
+            <div className="category-card col-12 col-md-6 col-lg-3">
               <div className="category-inner d-flex justify-content-center align-items-center flex-column">
                 <div className="card-icon overflow-hidden">
-                  <img src={image4} alt="" className="w-100" />
+                  <i className="fa-solid fa-book-open fs-1"></i>
                 </div>
-                <p className="fs-3">Bags</p>
-              </div>
-            </div>
-            <div className="category-card col-12 col-md-4 col-lg-2">
-              <div className="category-inner d-flex justify-content-center align-items-center flex-column">
-                <div className="card-icon overflow-hidden">
-                  <img src={image5} alt="" className="w-100" />
-                </div>
-                <p className="fs-3">Memory Card</p>
-              </div>
-            </div>
-            <div className="category-card col-12 col-md-4 col-lg-2">
-              <div className="category-inner d-flex justify-content-center align-items-center flex-column">
-                <div className="card-icon overflow-hidden">
-                  <img src={image6} alt="" className="w-100" />
-                </div>
-                <p className="fs-3">Accessories</p>
+                <p className="fs-3">Manga</p>
               </div>
             </div>
           </div>
@@ -149,112 +141,57 @@ const HomePage = () => {
       <section className="homePage section-space">
         <div className="container">
           <header className="d-flex justify-content-center pb-5">
-            <h2 className="section-header text-capitalize">best seller</h2>
+            <h2 className="section-header text-capitalize">best anime</h2>
           </header>
           <div className="row gy-3">
-            <div className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 ">
-              <div className="homePage-img overflow-hidden">
-                <img src={image1} alt="Canon EOS R5 image" className="w-100" />
-              </div>
-              <div className="homePage-inner rounded shadow p-3">
-                <div>
-                  <h3>Canon EOS R5</h3>
-                  <div className="homePage-prices d-flex gap-3">
-                    <p className="text-decoration-line-through mb-0">
-                      30000 EGP
+            {animeList.slice(5, 9).map((anime) => (
+              <div
+                key={anime.id}
+                className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 "
+              >
+                <div className="homePage-img overflow-hidden">
+                  <img
+                    src={anime.attributes.posterImage.large}
+                    alt="Canon EOS R5 image"
+                    className="w-100"
+                  />
+                </div>
+                <div className="homePage-inner rounded shadow p-3">
+                  <div>
+                    <h3 className="text-capitalize h5">
+                      {anime.attributes.titles.en}
+                    </h3>
+                    <p className="homePage-info my-2">
+                      {truncateDescription(anime.attributes.description, 19)}
                     </p>
-                    <p className="mb-0">25000 EGP</p>
+                    <div className="d-flex align-items-center justify-content-between my-2">
+                      <div>
+                        <p className="mb-0 text-center fw-bold">Start In</p>
+                        <span>{anime.attributes.startDate}</span>
+                      </div>
+                      <div>
+                        <p className="mb-0 text-center fw-bold">End In</p>
+                        <span>{anime.attributes.endDate}</span>
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <div className="d-flex align-items-center gap-2">
+                        <p className="mb-0">Rating</p>
+                        <i className="fa-solid fa-star text-warning"></i>
+                      </div>
+                      <h4>{anime.attributes.averageRating}</h4>
+                    </div>
+                    <button className="btn btn-homePage w-100">
+                      View Details
+                    </button>
                   </div>
-                  <p className="homePage-info my-2">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minus nesciunt sequi eius qui repellat sapiente molestias
-                    ipsa reprehenderit accusamus asperiores.
-                  </p>
-                  <p className="item-number">1 item left</p>
-                  <button className="btn btn-homePage w-100">
-                    View Details
-                  </button>
                 </div>
               </div>
-            </div>
-            <div className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 ">
-              <div className="homePage-img overflow-hidden">
-                <img src={image1} alt="Canon EOS R5 image" className="w-100" />
-              </div>
-              <div className="homePage-inner rounded shadow p-3">
-                <div>
-                  <h3>Canon EOS R5</h3>
-                  <div className="homePage-prices d-flex gap-3">
-                    <p className="text-decoration-line-through mb-0">
-                      30000 EGP
-                    </p>
-                    <p className="mb-0">25000 EGP</p>
-                  </div>
-                  <p className="homePage-info my-2">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minus nesciunt sequi eius qui repellat sapiente molestias
-                    ipsa reprehenderit accusamus asperiores.
-                  </p>
-                  <p className="item-number">1 item left</p>
-                  <button className="btn btn-homePage w-100">
-                    View Details
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 ">
-              <div className="homePage-img overflow-hidden">
-                <img src={image1} alt="Canon EOS R5 image" className="w-100" />
-              </div>
-              <div className="homePage-inner rounded shadow p-3">
-                <div>
-                  <h3>Canon EOS R5</h3>
-                  <div className="homePage-prices d-flex gap-3">
-                    <p className="text-decoration-line-through mb-0">
-                      30000 EGP
-                    </p>
-                    <p className="mb-0">25000 EGP</p>
-                  </div>
-                  <p className="homePage-info my-2">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minus nesciunt sequi eius qui repellat sapiente molestias
-                    ipsa reprehenderit accusamus asperiores.
-                  </p>
-                  <p className="item-number">1 item left</p>
-                  <button className="btn btn-homePage w-100">
-                    View Details
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="homePage-card col-12 col-md-6 col-lg-3 rounded-2 ">
-              <div className="homePage-img overflow-hidden">
-                <img src={image1} alt="Canon EOS R5 image" className="w-100" />
-              </div>
-              <div className="homePage-inner rounded shadow p-3">
-                <div>
-                  <h3>Canon EOS R5</h3>
-                  <div className="homePage-prices d-flex gap-3">
-                    <p className="text-decoration-line-through mb-0">
-                      30000 EGP
-                    </p>
-                    <p className="mb-0">25000 EGP</p>
-                  </div>
-                  <p className="homePage-info my-2">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minus nesciunt sequi eius qui repellat sapiente molestias
-                    ipsa reprehenderit accusamus asperiores.
-                  </p>
-                  <p className="item-number">1 item left</p>
-                  <button className="btn btn-homePage w-100">
-                    View Details
-                  </button>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

@@ -6,7 +6,7 @@ const NavBar = () => {
       <nav className="navBar navbar navbar-expand-lg navbar-dark position-fixed py-3">
         <div className="container">
           <a className="navbar-brand" href="#">
-            Camera Shop
+            Anime Review
           </a>
           <button
             className="navbar-toggler"
