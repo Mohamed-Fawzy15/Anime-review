@@ -13,7 +13,7 @@ const Footer = () => {
                   <img
                     src={logo}
                     alt="Camera shop logo"
-                    className="footer-img"
+                    className="logo-sm-img"
                   />
                   <h3 className="mb-0">Anime Review</h3>
                 </header>

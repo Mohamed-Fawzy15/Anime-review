@@ -1,12 +1,9 @@
 import "../style/HomePageStyle.css";
-
-import NavBar from "../component/navbar";
-import Footer from "../component/footer";
-
 import { useState, useEffect } from "react";
 
 const HomePage = () => {
   const [animeList, setAnimeList] = useState([]);
+  const [activeButtonId, setActiveButtonId] = useState(null);
 
   useEffect(() => {
     getData();
@@ -31,9 +28,11 @@ const HomePage = () => {
       : description;
   }
 
+  const handleButtonClick = (id) => {
+    setActiveButtonId(id); // Set the active button ID
+  };
   return (
     <>
-      <NavBar />
       <header className="hero">
         <h2 className="h5">Welcome To</h2>
         <h1>Anime review</h1>
@@ -85,9 +84,19 @@ const HomePage = () => {
                       </div>
                       <h4>{anime.attributes.averageRating}</h4>
                     </div>
-                    <button className="btn btn-homePage w-100">
-                      View Details
-                    </button>
+                    <div className="d-flex align-items-center gap-1">
+                      <button className="btn btn-homePage w-100">
+                        View Details
+                      </button>
+                      <button
+                        className={`btn btn-favorite ${
+                          activeButtonId === anime.id ? "active" : ""
+                        }`}
+                        onClick={() => handleButtonClick(anime.id)}
+                      >
+                        <i className="fa-solid fa-heart"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -181,9 +190,19 @@ const HomePage = () => {
                       </div>
                       <h4>{anime.attributes.averageRating}</h4>
                     </div>
-                    <button className="btn btn-homePage w-100">
-                      View Details
-                    </button>
+                    <div className="d-flex align-items-center gap-1">
+                      <button className="btn btn-homePage w-100">
+                        View Details
+                      </button>
+                      <button
+                        className={`btn btn-favorite ${
+                          activeButtonId === anime.id ? "active" : ""
+                        }`}
+                        onClick={() => handleButtonClick(anime.id)}
+                      >
+                        <i className="fa-solid fa-heart"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -191,8 +210,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
