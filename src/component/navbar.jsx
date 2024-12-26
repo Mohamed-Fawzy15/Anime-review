@@ -42,16 +42,6 @@ const NavBar = () => {
                   Character
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Favorite
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Log Out
-                </a>
-              </li>
             </ul>
           </div>
         </div>

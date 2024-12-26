@@ -1,0 +1,32 @@
+.allAnime-header {
+  background-image: url("../assets/anime.jpg");
+  background-position: center;
+  min-height: 40vh;
+  background-size: cover;
+  position: relative;
+}
+
+.animeList {
+  position: relative;
+  top: -100%;
+}
+
+.card-container {
+  display: flex;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.homePage-inner {
+  flex-grow: 1; /* Allow the inner content to take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
+}
+
+.homePage-img img {
+  height: 400px;
+}

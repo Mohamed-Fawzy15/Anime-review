@@ -150,7 +150,7 @@ const HomePage = () => {
       <section className="homePage section-space">
         <div className="container">
           <header className="d-flex justify-content-center pb-5">
-            <h2 className="section-header text-capitalize">best anime</h2>
+            <h2 className="section-header text-capitalize">old anime</h2>
           </header>
           <div className="row gy-3">
             {animeList.slice(5, 9).map((anime) => (
